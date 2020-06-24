@@ -146,7 +146,7 @@
                     </div>
                   </div>
                 </form>
-              </div>
+               </div>
             </li>
 
             <!-- Nav Item - Alerts -->
