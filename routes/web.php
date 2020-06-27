@@ -14,9 +14,38 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//admin
+Route::prefix('admin')->name('admin.')->group(function(){
+Route::get('/home','AdminController@index')->name('index');
+
+});
+
+//koki
+Route::prefix('koki')->name('koki.')->group(function(){
+Route::get('/home','KokiController@index')->name('index');
+
+});
+
+//pantry
+Route::prefix('pantry')->name('pantry.')->group(function(){
+Route::get('/home','PantryController@index')->name('index');
+
+});
+
+//pelayan
+Route::prefix('waitress')->name('waitress.')->group(function(){
+Route::get('/home','WaitressController@index')->name('index');
+
+});
+
+
+
+
+?>

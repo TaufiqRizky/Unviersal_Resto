@@ -1,5 +1,5 @@
 @extends('layout.admin')
 
 @section('content')
-<h1>HI admin tamvan</h1>
+<h1>hi pelayan</h1>
 @endsection
