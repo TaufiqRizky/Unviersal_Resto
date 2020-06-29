@@ -21,8 +21,19 @@ class AdminController extends Controller
          $data['user']= DB::table('users')
           ->join('role_user','users.id','=','role_user.user_id')
           ->join('roles','role_user.role_id','=','roles.id')
-          ->select('users.id','users.name','users.email','roles.role')->get();
+          ->select('users.id','users.name','users.email','roles.role')
+          ->whereNotIn('role_user.role_id', [1])->get();
         return view('admin/list_user',$data);
     }
+
+    public function destroy_user($id){
+        $role = DB::table('role_user')->where('user_id', '=', $id)->delete();
+        if ($role) {
+            \App\User::destroy($id); 
+            return true;
+        }else{
+            return false;
+        }
+   }
    
 }
