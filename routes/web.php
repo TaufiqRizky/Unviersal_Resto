@@ -24,6 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //admin
 Route::prefix('admin')->name('admin.')->group(function(){
 Route::get('/home','AdminController@index')->name('index');
+Route::get('/user/list','AdminController@User_list')->name('user.list');
 
 });
 
@@ -42,6 +43,12 @@ Route::get('/home','PantryController@index')->name('index');
 //pelayan
 Route::prefix('waitress')->name('waitress.')->group(function(){
 Route::get('/home','WaitressController@index')->name('index');
+
+});
+
+//kasir
+Route::prefix('kasir')->name('kasir.')->group(function(){
+Route::get('/home','KasirController@index')->name('index');
 
 });
 

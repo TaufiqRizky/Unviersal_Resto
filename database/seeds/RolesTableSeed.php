@@ -17,6 +17,7 @@ class RolesTableSeed extends Seeder
         Role::create(['role'=> 'koki']);
         Role::create(['role'=> 'pantry']);
         Role::create(['role'=> 'pelayan']);
+        Role::create(['role'=> 'kasir']);
 
     }
 }

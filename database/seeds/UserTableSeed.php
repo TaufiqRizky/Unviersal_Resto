@@ -21,6 +21,7 @@ class UserTableSeed extends Seeder
         $kokiRole = Role::where('role', 'koki')->first();
         $pantryRole = Role::where('role', 'pantry')->first();
         $pelayanRole = Role::where('role', 'pelayan')->first();
+        $kasirnRole = Role::where('role', 'kasir')->first();
 
         $admin = User::create([
         	'name'=>'Lord Triz',
@@ -46,9 +47,16 @@ class UserTableSeed extends Seeder
         	'password'=>Hash::make('lordtaufiq')
         ]);
 
+        $kasir = User::create([
+            'name'=>'Aku Kasir',
+            'email'=>'kasir@gmail.com',
+            'password'=>Hash::make('lordtaufiq')
+        ]);
+
         $admin->roles()->attach($adminRole);
         $koki->roles()->attach($kokiRole);
         $pantry->roles()->attach($pantryRole);
         $pelayan->roles()->attach($pelayanRole);
+        $kasir->roles()->attach($kasirnRole);
     }
 }

@@ -52,6 +52,9 @@ class LoginController extends Controller
         }else if (Auth::user()->hasRole('pelayan')){
             $this->redirectTo= route('waitress.index');
             return $this->redirectTo;
+        }else if (Auth::user()->hasRole('kasir')){
+            $this->redirectTo= route('kasir.index');
+            return $this->redirectTo;
         }
     }
 }

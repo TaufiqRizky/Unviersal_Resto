@@ -17,6 +17,7 @@
 
   <!-- Custom styles for this template-->
   <link href="{{url('asset/css/sb-admin-2.min.css')}}" rel="stylesheet">
+  @yield('cssCustom')
 
 </head>
 
@@ -46,46 +47,36 @@
           <span>Dashboard</span></a>
       </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>?</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">ini untuk apasi?</h6>
-            <a class="collapse-item" href="buttons.html">aku siapa?</a>
-            <a class="collapse-item" href="cards.html">ini dimana?</a>
-          </div>
-        </div>
-      </li>
-
       
 
+      
+      
+      
+
+      
+    @if(Auth::user()->hasRole('admin'))
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <!-- Heading -->
+
       <div class="sidebar-heading">
         Addons
       </div>
-
-      
-
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>ini apa</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-users "></i>
+          <span>User Management</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Manage Users</h6>
+            <a class="collapse-item" href="{{route('admin.user.list')}}">List User</a>
+            <a class="collapse-item" href="cards.html">Add New User</a>
+          </div>
+        </div>
       </li>
+      @endif
 
      
 
@@ -356,7 +347,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{{url('asset/js/sb-admin-2.min.js')}}"></script>
-
+  @yield('customJs')
 </body>
 
 </html>
