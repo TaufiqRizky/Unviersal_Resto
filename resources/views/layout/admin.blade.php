@@ -75,7 +75,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Manage Users</h6>
             <a class="collapse-item" href="{{route('admin.user.list')}}">List User</a>
-            <a class="collapse-item" href="cards.html">Add New User</a>
+            <a class="collapse-item" href="{{route('admin.user.add')}}">Add New User</a>
           </div>
         </div>
       </li>

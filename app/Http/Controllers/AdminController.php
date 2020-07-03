@@ -23,7 +23,12 @@ class AdminController extends Controller
           ->join('roles','role_user.role_id','=','roles.id')
           ->select('users.id','users.name','users.email','roles.role')
           ->whereNotIn('role_user.role_id', [1])->get();
-        return view('admin/list_user',$data);
+        return view('admin/user/list_user',$data);
+    }
+
+    public function User_tambah(){
+        $data['role']= DB::table('roles')->select('*')->whereNotIn('id', [1])->get();
+        return view('admin/user/add_user',$data);
     }
 
     public function destroy_user($id){
