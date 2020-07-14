@@ -28,7 +28,7 @@
 						  </div>
 						  <div class="form-group col-md-6">
 								<label for="exampleInputEmail1">Email address</label>
-								<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+								<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
 								<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 						  </div>
                     </div>
@@ -57,7 +57,7 @@
 					  </div>
 								  
                       <div class="form-group">
-                           <input type="checkbox" id="checkbox" name="checkbox">
+                           <input type="checkbox" id="robot" name="checkbox">
                             <label for="checkbox">Saya Bukan Robot</label>
                        </div>
                           <button class="btn btn-primary  btn_submit" data-type="prompt">Simpan</button>
@@ -78,21 +78,58 @@
 			if ($(this).val() != $('#password').val()) {
 				$('#pass_error').show();
 				$('#pass_done').hide();
-				$('.btn_submit').hide();
+				$('.btn_submit').attr("disabled", true);
 			}else{
 		   		$('#pass_done').show();
-				$('.btn_submit').show();
+				$('.btn_submit').attr("disabled", false);
 		   		$('#pass_error').hide();
 
 
 			}
 		  
 		});
-		// $( ".btn_submit" ).click(function() {
-		// 	if ($(this).val() != $('#password').val()) {
-				
-		// 	}
-		  
-		// });
+		$( ".btn_submit" ).click(function() {
+			if ($('#name').val()=="" || $('#role').val()=="" || $('#password').val()=="" || $('#email').val()=="") {
+				Swal.fire(
+					      'Warning!',
+					      "Please check again your data, make sure you've fill out all form",
+					      'warning'
+					    );
+			}else if ($("#robot").prop('checked') == false) {
+				Swal.fire(
+					      'Beep Beep Beep',
+					      "Hey Robot Fuck off!!",
+					      'warning'
+					    );
+			}else{
+
+				$.ajax({
+	                url:"add/store",
+	                type:'POST',
+	                headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
+	                data:{nama:$('#name').val(),email:$('#email').val(),pass:$('#password').val(),role:$('#role').val()},
+	                success: function (data) {
+	                   Swal.fire({
+						 
+						  icon: 'success',
+						  title: 'Your work has been saved',
+						  showConfirmButton: false,
+						  timer: 1500
+						});
+	                   window.location.href = "{{ route('admin.user.list')}}";
+	                  
+
+	                    },
+	                    error: function (data) {
+	                         swalWithBootstrapButtons.fire(
+						      'Gagal!',
+						      'Failed to delete your file.',
+						      'error'
+						    );
+	                    }
+	            });
+			}
+
+		});
 	</script>
 @endsection

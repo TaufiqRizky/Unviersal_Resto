@@ -26,6 +26,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 Route::get('/home','AdminController@index')->name('index');
 Route::get('/user/list','AdminController@User_list')->name('user.list');
 Route::get('/user/add','AdminController@User_tambah')->name('user.add');
+Route::post('/user/add/store','AdminController@User_store')->name('user.add.store');
 Route::delete('/user/list/{id}','AdminController@destroy_user');
 });
 

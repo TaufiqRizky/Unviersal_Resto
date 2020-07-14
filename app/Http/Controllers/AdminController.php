@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Role;
 
 class AdminController extends Controller
 {
@@ -29,6 +31,16 @@ class AdminController extends Controller
     public function User_tambah(){
         $data['role']= DB::table('roles')->select('*')->whereNotIn('id', [1])->get();
         return view('admin/user/add_user',$data);
+    }
+
+    public function User_store(Request $request){
+        $user= new \App\User;
+      $user->name = $request->nama;
+      $user->email = $request->email;
+      $user->password = Hash::make($request->pass);
+      $user->save();
+      $role = Role::where('id', $request->role)->first();
+      $user->roles()->attach($role);
     }
 
     public function destroy_user($id){
