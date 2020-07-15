@@ -67,6 +67,7 @@
 
 @endsection
 @section('customJs')
+
 	<script type="text/javascript">
 		$(document).ready( function () {
 		    $('#pass_error').hide();

@@ -15,6 +15,9 @@
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardExample">
                   <div class="card-body">
+                  	<div class="col-md-12 ">
+                  		<div style="float: right; margin-bottom: 20px" class="list-button"></div>
+                  	</div>
                     <div class="table-responsive">
 		                <table class="table table-bordered table-striped" id="tbUser"  cellspacing="0">
 		                  <thead>
@@ -54,9 +57,71 @@
 
  
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.bootstrap4.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript">
 	$(document).ready( function () {
-	    $('#tbUser').DataTable();
+	     var codeListTable = $('#tbUser').DataTable();
+	     new $.fn.dataTable.Buttons(codeListTable, {
+        buttons: [
+          {
+            extend: 'csv',
+            text: '<i class="fa fa-file"></i> CSV',
+            titleAttr: 'CSV',
+            className: 'btn btn-primary btn-sm',
+            init: function(api, node, config) {
+              $(node).removeClass('btn-default btn-secondary')
+            },
+            exportOptions: {
+              columns: ['0', '1', '2', '3']
+            }
+          },
+          {
+            extend: 'excelHtml5',
+            text: '<i class="fa fa-file-excel"></i> Excel',
+            titleAttr: 'Excel',
+            className: 'btn btn-primary btn-sm',
+            init: function(api, node, config) {
+              $(node).removeClass('btn-default btn-secondary')
+            },
+            exportOptions: {
+              columns: ['0', '1', '2', '3']
+            }
+          },
+          {
+            extend: 'pdf',
+            text: '<i class="fa fa-file-pdf"></i> PDF',
+            titleAttr: 'pdfHtml5',
+            className: 'btn btn-primary btn-sm',
+            init: function(api, node, config) {
+              $(node).removeClass('btn-default btn-secondary')
+            },
+            exportOptions: {
+              columns: ['0', '1', '2', '3']
+            }
+          },
+          {
+            extend: 'print',
+            text: '<i class="fa fa-print"></i> Print',
+            titleAttr: 'Print',
+            className: 'btn btn-primary btn-sm',
+            init: function(api, node, config) {
+              $(node).removeClass('btn-default btn-secondary')
+            },
+            exportOptions: {
+              columns: ['0', '1', '2', '3']
+            }
+          },
+        ]
+      });
+      codeListTable.buttons().container().appendTo('.list-button');
 
 	    var id;
 
