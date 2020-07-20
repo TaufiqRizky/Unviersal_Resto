@@ -38,7 +38,7 @@
 			                      <td>{{ $value ->role}}</td>
 			                      <td class="js-sweetalert">
                                             
-                                     <a class="btn btn-primary " data-type="" href="#" > <i class="material-icons">edit</i></a>
+                                     <a class="btn btn-primary " data-type="" href="{{ url('admin/user/edit/'.$value->id) }}" > <i class="material-icons">edit</i></a>
                                         
                                      <button class="btn btn-danger " data-id="{{$value->id}}" data-type="D_user"><i class="material-icons">delete</i></button>
                                   </td>

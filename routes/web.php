@@ -26,7 +26,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
 Route::get('/home','AdminController@index')->name('index');
 Route::get('/user/list','AdminController@User_list')->name('user.list');
 Route::get('/user/add','AdminController@User_tambah')->name('user.add');
+Route::get('/user/edit/{id}','AdminController@User_edit')->name('user.edit');
 Route::post('/user/add/store','AdminController@User_store')->name('user.add.store');
+Route::post('/user/update/{id}','AdminController@User_update')->name('user.update');
 Route::delete('/user/list/{id}','AdminController@destroy_user');
 });
 
